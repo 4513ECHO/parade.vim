@@ -2,7 +2,7 @@
 
 A [Matrix](https://matrix.org) chat client for Vim/Neovim with denops.vim
 
-> **Wraning** This plugins is still alpha version and working in progress. There
+> **Warning** This plugins is still alpha version and working in progress. There
 > may be bugs and breaking changes.
 
 ## Requirements
