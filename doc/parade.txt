@@ -3,7 +3,7 @@
 Author: Hibiki <4513echo@gmail.com>
 License: MIT License
 URL: https://github.com/4513ECHO/parade.vim
-Last change: 2023 Feb 13
+Last change: 2023 Feb 19
 
 ==============================================================================
 CONTENTS						*parade-contents*
@@ -11,6 +11,8 @@ CONTENTS						*parade-contents*
 Introduction						|parade-introduction|
 Requirements						|parade-requirements|
 Interface						|parade-interface|
+  Functions						|parade-functions|
+  Options						|parade-options|
 About							|parade-about|
 
 ==============================================================================
@@ -27,7 +29,21 @@ REQUIREMENTS						*parade-requirements*
 ==============================================================================
 INTERFACE						*parade-interface*
 
-	UNDEFINED YET
+------------------------------------------------------------------------------
+FUNCTIONS						*parade-functions*
+
+							*parade#config()*
+parade#config({option-name}, {value})
+parade#config({options})
+	Set {option-name} to {value}.
+	If {options} is |Dictionary|, the keys are used to {option-name} and
+	values are {value}.
+	See |parade-option| for available options.
+
+------------------------------------------------------------------------------
+OPTIONS							*parade-options*
+
+	UNDOCUMENTED YET
 
 ==============================================================================
 ABOUT							*parade-about*
