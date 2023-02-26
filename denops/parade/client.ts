@@ -1,8 +1,14 @@
-import { createClient, type MatrixClient } from "npm:matrix-js-sdk@23.2.0";
+import {
+  createClient,
+  type EventEmittedEvents,
+  type MatrixClient,
+  type MatrixEvent,
+} from "npm:matrix-js-sdk@23.3.0";
 import { serve } from "https://deno.land/std@0.175.0/http/server.ts";
 import { open } from "https://deno.land/x/open@v0.0.5/index.ts";
+import { config } from "./config.ts";
 
-async function resolveUserId(
+export async function resolveUserId(
   userId: string,
 ): Promise<{ baseUrl: string; username: string }> {
   if (!userId.startsWith("@") || !userId.includes(":")) {
@@ -17,7 +23,7 @@ async function resolveUserId(
   };
 }
 
-async function loginWithSso(
+export async function loginWithSso(
   client: MatrixClient,
   // deno-lint-ignore no-inferrable-types
   port: number = 8689,
@@ -47,21 +53,29 @@ async function loginWithSso(
   });
 }
 
-const baseUrl = await resolveUserId("@someone:gitter.im")
+const baseUrl = await resolveUserId(config.userId)
   .then((result) => result.baseUrl);
 
-const client = createClient({ baseUrl });
-console.log(await loginWithSso(client));
-
-client.once("sync", (state, _prevState, _res) => {
-  console.log(state);
-  for (const room of client.getRooms()) {
-    console.log(room);
-  }
+const client = createClient({
+  baseUrl,
+  userId: config.userId,
+  accessToken: config.token,
 });
-// client.on("event", (event) => {
-//   console.log(event.getType());
-//   console.log(event);
-// });
+// console.log(await client.loginWithToken(config.token));
+// console.log(await loginWithSso(client));
+
+client.once(
+  "sync" as EventEmittedEvents,
+  (state: string, _prevState: unknown, _res: unknown) => {
+    console.log(state);
+    for (const room of client.getRooms()) {
+      console.log({ name: room.name, roomId: room.roomId });
+    }
+  },
+);
+client.on("event" as EventEmittedEvents, (event: MatrixEvent) => {
+  console.log(event.getType());
+  console.log(event);
+});
 
 await client.startClient();

@@ -7,7 +7,8 @@ import {
 // https://github.com/vim-skk/skkeleton/blob/7474ea38c4/denops/skkeleton/config.ts
 
 export const config = {
-  token: "",
+  token: "dummyToken",
+  userId: "@someone:matrix.org",
 };
 
 type Validators = {
@@ -16,6 +17,7 @@ type Validators = {
 
 const validators: Validators = {
   token: assertString,
+  userId: assertString,
 };
 
 export function setConfig(newConfig: Record<string, unknown>): string | null {
