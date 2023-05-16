@@ -1,9 +1,9 @@
 *parade.txt*			A Matrix chat client for Vim/Neovim with denops.vim
 
-Author: Hibiki <4513echo@gmail.com>
+Author: Hibiki <mail@4513echo.dev>
 License: MIT License
 URL: https://github.com/4513ECHO/parade.vim
-Last change: 2023 Feb 19
+Last change: 2023 May 16
 
 ==============================================================================
 CONTENTS						*parade-contents*
